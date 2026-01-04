@@ -84,7 +84,7 @@ export default function Apparel() {
       {page === 1 && (
         <div className="grid grid-cols md:grid-cols-3 gap-6">
           {ApparelOne.map((ApparelOne, index) => (
-            <div className="bg-white/5 rounded-2xl p-4">
+            <div key={index} className="bg-white/5 rounded-2xl p-4">
               <div className="h-80 w-full overflow-hidden">
                 <img
                   src={ApparelOne.image}
@@ -113,7 +113,7 @@ export default function Apparel() {
       {page === 2 && (
         <div className="grid grid-cols md:grid-cols-3 gap-6">
           {ApparelTwo.map((ApparelTwo, index) => (
-            <div className="bg-white/5 rounded-2xl p-4">
+            <div key={index} className="bg-white/5 rounded-2xl p-4">
               <div className="h-80 w-full overflow-hidden">
                 <img
                   src={ApparelTwo.image}

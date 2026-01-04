@@ -104,7 +104,7 @@ export default function TestiPage() {
           loop={true}
         >
           {culersReview.map((culersReview, index) => (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-[#A50044] transition-all duration-300 h-full">
                 <p className="font-inter text-white/80 italic mb-6">
                   {culersReview.content}
