@@ -1,5 +1,3 @@
-import Apparel from "./apparel"
-import Ticket from "./ticket"
 
 export default function Shop () {
     return (

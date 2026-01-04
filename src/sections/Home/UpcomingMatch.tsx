@@ -54,7 +54,7 @@ export default function UpcomingMatch() {
           </h1>
 
           {match.map((match, index) => (
-            <div className="flex justify-between items-center mt-10 hover:scale-103 duration-300">
+            <div key={index} className="flex justify-between items-center mt-10 hover:scale-103 duration-300">
               <div className="flex flex-col">
                 <p className="font-oswald text-xs md:text-base">{match.date}</p>
                 <p className="font-inter text-xs md:text-base font-light">

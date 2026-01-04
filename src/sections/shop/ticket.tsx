@@ -65,7 +65,7 @@ export default function Ticket() {
           >
             {/* =========================slide 1========================= */}
             {barcaTiket.map((barcaTiket, index) => (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <div className="relative h-75">
                   <img
                     src={barcaTiket.image}
