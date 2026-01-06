@@ -5,7 +5,24 @@ export default function TeamsPage() {
   // 1. Tambahin state loading (default-nya true karena kita langsung fetch)
   const [isLoading, setIsLoading] = useState(true);
 
+  const onCreatePlayer = async () => {
+    try {
+      const response = await fetch("https://randomuser.me/api?results=8")         //manggil api
+      const data = await response.json();                                         //unboxing api
+      setPlayers(data.results)                                                    //mindahin api ke state
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false);
+    }
+  }
+
   useEffect(() => {
+    onCreatePlayer();
+  }, [])
+
+
+  /* useEffect(() => {
     fetch("https://randomuser.me/api?results=8")              // mengambil data API
       .then((res) => res.json())                              // menerima data api => data diubah menjadi json
       .then((data) => {  
@@ -17,7 +34,7 @@ export default function TeamsPage() {
         console.log(err);
         setIsLoading(false);
       });
-  }, []);
+  }, []); */
 
   // 3. KONDISI LOADING: Kalau masih loading, tampilin ini
   if (isLoading) {
