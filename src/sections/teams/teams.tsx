@@ -7,10 +7,12 @@ export default function TeamsPage() {
 
   const onCreatePlayer = async () => {
     try {
+      
       const response = await fetch("https://randomuser.me/api?results=8")         //manggil api
       const data = await response.json();                                         //unboxing api
       setPlayers(data.results)                                                    //mindahin api ke state
-      setIsLoading(false)
+      setIsLoading(false);
+      
     } catch (error) {
       console.log(error)
       setIsLoading(false);

@@ -1,24 +1,22 @@
 import { useState } from "react";
 import barcaLogo from "../assets/FC_Barcelona_(crest).svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FiX } from "react-icons/fi";
 import { HiDotsHorizontal } from "react-icons/hi";
+import { useAuthStore } from "../stores/useAuthStore";
 
 export default function NavBarPage() {
   const [show, setShow] = useState(false);
   const [showshop, setShowShop] = useState(false);
 
-  const userLoginJSON = localStorage.getItem("userLogin");
+  const { email, setEmail } = useAuthStore();
+  const navigate = useNavigate()
 
-  const [currentUser, setCurrentUser] = useState(
-    userLoginJSON && JSON.parse(userLoginJSON)
-  );
-
-  function logout() {
-    setCurrentUser("");
-    localStorage.setItem("userLogin", "");
+  const logout = () => {
+    setEmail(""),
+    navigate("/home")
   }
-
+  
   return (
     <>
       <nav className="fixed z-[50] w-full bg-white">
@@ -27,7 +25,11 @@ export default function NavBarPage() {
             to="/Home"
             className="cursor-pointer hover:opacity-50 duration-300"
           >
-            <img src={barcaLogo} alt="barcelona" className="w-[40px] md:w-[50px]" />
+            <img
+              src={barcaLogo}
+              alt="barcelona"
+              className="w-[40px] md:w-[50px]"
+            />
           </NavLink>
 
           <button
@@ -73,12 +75,19 @@ export default function NavBarPage() {
             </NavLink>
           </div>
 
-          {currentUser ? (
-            <div className="flex items-center gap-2 font-oswald font-bold text-sm md:text-base">
-              <div>Hello, {currentUser.firstName}</div>
+          {email ? (
+            <div className="flex items-center gap-4 font-oswald font-bold text-sm md:text-base">
+              <div className="hidden sm:flex flex-col items-end border-r border-slate-200 pr-4">
+                <span className="text-[10px] text-[#A50044]/40 font-inter uppercase tracking-[0.2em] leading-none">
+                  Hello Cullers
+                </span>
+                <p className="text-[#004D98] font-bold text-sm lowercase leading-tight">
+                  {email}
+                </p>
+              </div>
               <button
                 onClick={logout}
-                className="bg-[#A50044] rounded-full text-white text-sm md:text-base px-4 md:px-6 hover:bg-[#67012b] cursor-pointer"
+                className="shrink-0 bg-[#A50044] rounded-full text-white text-sm md:text-base px-4 md:px-6 py-1.5 hover:bg-[#67012b] cursor-pointer"
               >
                 LOG OUT
               </button>
