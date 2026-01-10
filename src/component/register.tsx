@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import logo from "../assets/FC_Barcelona_(crest).svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { registerSchemas } from "../features/schemas/registerSchemas";
-import { useEffect } from "react";
 
 type userRegister = {
   firstName: string

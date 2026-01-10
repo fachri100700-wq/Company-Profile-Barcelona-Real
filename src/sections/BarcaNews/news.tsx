@@ -35,7 +35,7 @@ export default function NewsPage() {
 
           {/* ================ MAP ==================== */}
 
-          {news.map((news, index) => (
+          {news.map((news) => (
             <div
               key={news.objectId}
               className="group relative flex flex-col border w-full h-[250px] md:h-[450px] overflow-hidden"

@@ -13,7 +13,6 @@ import Ticket from './sections/shop/ticket.tsx';
 import Apparel from './sections/shop/apparel.tsx';
 import NewsPage from './sections/BarcaNews/news.tsx';
 import FormPage from './sections/BarcaNews/form.tsx';
-import ContentStaticPage from './sections/BarcaNews/contentStatic.tsx';
 import ContentPage from './sections/BarcaNews/content.tsx';
 
 
@@ -35,7 +34,6 @@ const router = createBrowserRouter([
       { path: "/Apparel", element: <Apparel /> },
       { path: "/barca-news", element: <NewsPage /> },
       { path: "/form-page", element: <FormPage /> },
-      { path: "/content-static-page", element: <ContentStaticPage /> },
       { path: "/content/:id", element: <ContentPage /> },
     ],
   },
