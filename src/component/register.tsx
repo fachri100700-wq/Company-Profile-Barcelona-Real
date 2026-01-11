@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import logo from "../assets/FC_Barcelona_(crest).svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { registerSchemas } from "../features/schemas/registerSchemas";
+import { IoClose } from "react-icons/io5";
 
 type userRegister = {
   firstName: string
@@ -41,8 +42,11 @@ export default function RegisterPage() {
       <div className="bg-gradient-to-r from-[#004D98] via-[#7b0034] to-[#A50044] min-h-screen flex items-center justify-center p-10">
         <form
           onSubmit={formik.handleSubmit}
-          className="bg-[#04101C] flex flex-col justify-center items-center gap-6 px-10 py-12 rounded-2xl shadow-2xl border border-white/10 w-full max-w-md"
+          className="relative bg-[#04101C] flex flex-col justify-center items-center gap-6 px-10 py-12 rounded-2xl shadow-2xl border border-white/10 w-full max-w-md"
         >
+          <NavLink to="/home" className="absolute right-5 top-5">
+            <IoClose className="text-[#A50044] text-4xl cursor-pointer" />
+          </NavLink>
           <div className="flex flex-col items-center gap-3">
             <img src={logo} alt="Barca Logo" className="h-20 w-20" />
             <h1 className="font-oswald text-3xl text-white tracking-widest">

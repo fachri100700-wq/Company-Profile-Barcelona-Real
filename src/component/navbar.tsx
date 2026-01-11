@@ -77,7 +77,7 @@ export default function NavBarPage() {
 
           {email ? (
             <div className="flex items-center gap-4 font-oswald font-bold text-sm md:text-base">
-              <div className="hidden sm:flex flex-col items-end border-r border-slate-200 pr-4">
+              <div className="flex-col items-end border-r border-slate-200 pr-4">
                 <span className="text-[10px] text-[#A50044]/40 font-inter uppercase tracking-[0.2em] leading-none">
                   Hello Cullers
                 </span>
