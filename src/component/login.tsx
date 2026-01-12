@@ -6,6 +6,7 @@ import Backendless from "../library/backendless";
 import { useAuthStore } from "../stores/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import { useState } from "react";
 
 type User2 = {
   username: string
@@ -14,22 +15,45 @@ type User2 = {
 
 export default function LoginPage() {
   const { setEmail } = useAuthStore()
-
+  const [error, setError] = useState<string>()
   const navigate = useNavigate()
   
   const onLogin = async ({username, password}: User2) => {
     try {
+      const whereAdmin = `username = '${username}' AND password = '${password}'`;
+      let queryBuilderAdmin = Backendless.DataQueryBuilder.create();
+      queryBuilderAdmin.setWhereClause(whereAdmin);
+
+      const findAdmin: any = await Backendless.Data.of("Admin").find(
+        queryBuilderAdmin
+      );
+
+      if (findAdmin.length > 0) {
+        setEmail(findAdmin[0].firstName);
+        navigate("/home");
+        localStorage.setItem("role", "admin");  // nyimpen kata admin (mangkannya ngga perlu stringfy)/ klu bener dia admin
+        return
+      }
+      
+      
       const whereCondition = `username = '${username}' AND password = '${password}'`
       let queryBuilder = Backendless.DataQueryBuilder.create()
       queryBuilder.setWhereClause(whereCondition)
 
       const findUser: any = await Backendless.Data.of("User2").find(queryBuilder)
       
-      setEmail(findUser[0].firstName)
-
-      navigate("/home");
+      if (findUser.length > 0) {
+        setEmail(findUser[0].firstName);
+        navigate("/home");
+        localStorage.setItem("role", "user");  
+        return
+      }else{
+        setError("Invalid username or password. Please try again");
+      }
+      
     } catch (error) {
       console.log(error);
+      
     }
   };
 
@@ -39,7 +63,7 @@ export default function LoginPage() {
       password: "",
     },
     onSubmit: ({ username, password }: User2) => {
-      onLogin({username,password});
+      onLogin({username,password})
       
     },
     validationSchema: loginSchemas,
@@ -91,7 +115,7 @@ export default function LoginPage() {
               />
               <p className="text-red-500 text-xs">{formik?.errors?.password}</p>
             </div>
-
+            {error && <p className="text-red-500 text-xs">{error}</p>}
             <button className="mt-2 bg-[#A50044] hover:bg-[#8e003a] text-white font-oswald py-3 rounded-lg uppercase tracking-widest transition-colors duration-300 cursor-pointer">
               Login
             </button>
