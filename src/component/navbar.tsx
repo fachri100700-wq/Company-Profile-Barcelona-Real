@@ -12,8 +12,11 @@ export default function NavBarPage() {
   const { email, setEmail } = useAuthStore();
   const navigate = useNavigate()
 
+  const myRole = localStorage.getItem("role");
+
   const logout = () => {
     setEmail(""),
+    localStorage.setItem("role", "user")
     navigate("/home")
   }
   

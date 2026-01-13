@@ -18,6 +18,7 @@ export default function LoginPage() {
   const [error, setError] = useState<string>()
   const navigate = useNavigate()
   
+  
   const onLogin = async ({username, password}: User2) => {
     try {
       const whereAdmin = `username = '${username}' AND password = '${password}'`;
