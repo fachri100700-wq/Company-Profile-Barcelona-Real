@@ -2,12 +2,14 @@ import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavBarPage from "./navbar";
 import FooterPage from "./footer";
+import ScrollToTop from "./scrolltoptop";
 
 export default function Root() {
-  const location = useLocation();
+  const {pathname} = useLocation();
   return (
     <>
-      {location.pathname === "/Login" || location.pathname === "/Register" ? (
+    <ScrollToTop/>
+      {pathname === "/Login" || pathname === "/Register" ? (
         ""
       ) : (
         <NavBarPage />
@@ -17,7 +19,7 @@ export default function Root() {
         <Outlet />
       </div>
 
-      {location.pathname === "/Login" || location.pathname === "/Register" ? (
+      {pathname === "/Login" || pathname === "/Register" ? (
         ""
       ) : (
         <FooterPage />
