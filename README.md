@@ -1,3 +1,3 @@
 Admin Account
-Username: baraadmin@gmail.com
+Username: barcaadmin@gmail.com
 password: abc12345
