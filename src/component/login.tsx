@@ -107,7 +107,7 @@ export default function LoginPage() {
             <div>
               <input
                 name="password"
-                id="passoword"
+                id="password"
                 onChange={formik?.handleChange}
                 value={formik?.values?.password}
                 type="password"
